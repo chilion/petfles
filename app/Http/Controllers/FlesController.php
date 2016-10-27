@@ -4,16 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Vind;
 
+use Request, View;
+
 /**
  * Class FlesController
  * @package App\Http\Controllers
  */
 class FlesController extends Controller
 {
-    public function index()
+    /**
+     * @author Chilion Snoek <c.snoek@texemus.com>
+     *
+     * @param $user
+     *
+     */
+    public function index($user)
     {
         //Make this a POST request...
-        $fles = Vind::where("vind_user", "=", "Chilion")->get();
+        $fles = Vind::where("vind_user", "=", $user)->get();
 
         $result = [];
 
@@ -28,8 +36,8 @@ class FlesController extends Controller
             unset($previous);
         }
 
-        dd($result);
 
+        return View::make("user.details")->withDistances($result);
     }
 
     /**

@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get("/user/{user}", "FlesController@index");
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
